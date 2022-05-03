@@ -1,0 +1,4 @@
+/CoffeWithSpring/src/test/java/br/com/project/restwithspringboot/utils/DozerConverterPersonTest.java
+/CoffeWithSpring/src/test/java/br/com/project/restwithspringboot/utils/DozerConverterBookTest.java
+/CoffeWithSpring/src/test/java/br/com/project/restwithspringboot/utils/mocks/MockPerson.java
+/CoffeWithSpring/src/test/java/br/com/project/restwithspringboot/utils/mocks/MockBook.java

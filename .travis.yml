@@ -1,0 +1,17 @@
+language: bash
+services: docker
+before_install:
+  - echo "Docker folder"
+script:
+  - docker-compose build
+before_deploy:
+  - echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
+deploy:
+  provider: script
+  script:
+    docker push lucioslv/mysql-coffe-with-ci-cd
+    docker push lucioslv/coffe-with-spring-boot
+  on:
+    branch: main
+notifications:
+  email: false

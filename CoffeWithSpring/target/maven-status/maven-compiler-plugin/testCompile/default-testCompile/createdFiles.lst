@@ -1,0 +1,4 @@
+br/com/project/restwithspringboot/utils/mocks/MockPerson.class
+br/com/project/restwithspringboot/utils/DozerConverterPersonTest.class
+br/com/project/restwithspringboot/utils/mocks/MockBook.class
+br/com/project/restwithspringboot/utils/DozerConverterBookTest.class
