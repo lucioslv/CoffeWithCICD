@@ -9,8 +9,8 @@ before_deploy:
 deploy:
   provider: script
   script:
-    docker push lucioslv/mysql-coffe-with-ci-cd
-    docker push lucioslv/coffe-with-spring-boot
+    docker push lucioslv/mysql-coffe-with-ci-cd:latest
+    docker push lucioslv/coffe-with-spring-boot:latest
   on:
     branch: main
 notifications:
