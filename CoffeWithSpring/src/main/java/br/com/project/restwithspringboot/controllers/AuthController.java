@@ -21,7 +21,7 @@ import static org.springframework.http.ResponseEntity.ok;
 import java.util.HashMap;
 import java.util.Map;
 
-@Api(tags = "AuthenticationEndpoint")
+@Api(tags = "AuthenticationEndpoint - JWT")
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
