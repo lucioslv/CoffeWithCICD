@@ -26,6 +26,6 @@ public class SwaggerConfig {
     }
 
     private ApiInfo apiInfo() {
-        return new ApiInfo("Coffe With Spring Boot and CI/CD", "Some description about your API.", "v1", "Terms Of Service Url", new Contact("Lucio Silva", "restwithspringboot.project.com.br", "lucioslv@hotmail.com"), "License of API", "License URL", Collections.emptyList());
+        return new ApiInfo("Coffe With Spring Boot", "Some description about your API.", "v1", "Terms Of Service Url", new Contact("Lucio Silva", "restwithspringboot.project.com.br", "lucioslv@hotmail.com"), "License of API", "License URL", Collections.emptyList());
     }
 }
