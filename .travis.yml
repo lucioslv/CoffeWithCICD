@@ -1,6 +1,17 @@
-language: bash
+sudo: required
+dist: bionic
+language: java
+jdk:
+  - oraclejdk11
+python:
+  - "3.6"
 services: docker
 before_install:
+  - sudo apt-get update
+  - cd CoffeWithSpring/
+  - echo "Maven start folder"
+  - mvn clean package
+  - cd ..
   - echo "Docker folder"
 script:
   - docker-compose build
@@ -9,9 +20,32 @@ before_deploy:
 deploy:
   provider: script
   script:
-    docker push lucioslv/mysql-coffe-with-ci-cd;
-    docker push lucioslv/coffe-with-spring-boot;
+    docker tag coffe-with-spring-boot:latest lucioslv/coffe-with-spring-boot:$TRAVIS_JOB_ID;
+    docker push lucioslv/coffe-with-spring-boot:$TRAVIS_JOB_ID;
   on:
     branch: main
+after_success:
+  - sudo apt-get -y install python3-pip python-dev
+  - sudo pip3 install -U setuptools
+  - sudo pip3 install -U virtualenvwrapper
+  - python3 -V
+  - pip3 -V
+  - pip3 uninstall wheel
+  - pip3 install wheel
+  - pip3 install awscli --upgrade --user
+  - export PATH=$PATH:$HOME/.local/bin
+  - aws configure set default.region $AWS_DEFAULT_REGION
+  - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+  - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+  - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $REPO_URL
+  - docker tag coffe-with-spring-boot:latest $IMAGE_REPO_URL:$TRAVIS_JOB_ID
+  - docker push $IMAGE_REPO_URL:$TRAVIS_JOB_ID
+  - add-apt-repository ppa:eugenesan/ppa
+  - apt-get update
+  - apt-get install jq -y
+  - curl https://raw.githubusercontent.com/silinternational/ecs-deploy/master/ecs-deploy | sudo tee -a /usr/bin/ecs-deploy
+  - sudo chmod +x /usr/bin/ecs-deploy
+  - echo "AWS ECS-Deploy"
+  - ecs-deploy -c $CLUSTER_NAME -n $SERVICE_NAME -i $IMAGE_REPO_URL:$TRAVIS_JOB_ID -r $AWS_DEFAULT_REGION -t 240
 notifications:
   email: false

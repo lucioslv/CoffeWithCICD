@@ -9,9 +9,9 @@
 		<relativePath/> <!--  lookup parent from repository  -->
 	</parent>
 	<groupId>br.com.project</groupId>
-	<artifactId>rest-with-spring-boot</artifactId>
+	<artifactId>coffe-with-spring-boot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>rest-with-spring-boot</name>
+	<name>coffe-with-spring-boot</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
